@@ -1,4 +1,5 @@
 # Show saved drawings on display
+# PRESS ENTER to cycle thru the images
 
 import time
 import sys
