@@ -6,7 +6,7 @@
 </div>
 
 # Materials
-* [Raspberry Pi 5](https://amzn.to/45zrAKI) / [4](https://amzn.to/3KQlkVv) / [3](https://amzn.to/3xs2iSm) / [Zero 2 WH](https://amzn.to/3Ov69Dm)<br />
+* [Raspberry Pi 5](https://amzn.to/45zrAKI) / [4](https://amzn.to/3KQlkVv) / [3](https://amzn.to/3xs2iSm) / [Zero 2 WH](https://amzn.to/3VO7eu2)<br />
 * [Micro SD Cards](https://amzn.to/4erXgWD)<br />
 * [2.23inch OLED HAT](https://amzn.to/3V2gCKb)<br />
 * [UPS Hat](https://amzn.to/4ceZp6I) (for Pi Zero 2 W)<br />
