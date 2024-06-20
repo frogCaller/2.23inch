@@ -17,7 +17,7 @@
 ## **Installations**
 
 1. **OS install:**
-   - Raspberry Pi 4 / 5 / Zero 2 WH - RaspberryPi OS 64-bit <br />
+   - Raspberry Pi 5 / 4 / 3 / Zero 2 WH - RaspberryPi OS 64-bit <br />
 
 2. **Install fortune & pygame:**
    ```
