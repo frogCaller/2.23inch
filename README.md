@@ -19,9 +19,10 @@
 1. **OS install:**
    - Raspberry Pi 5 / 4 / 3 / Zero 2 WH - RaspberryPi OS 64-bit <br />
 
-2. **Install fortune:**
+2. **Install fortune & pygame:**
    ```
    sudo apt install fortune -y
+   sudo pip3 install pygame
    ```
 
 3. Setup 2.23inch OLED HAT <br />
@@ -34,7 +35,6 @@
    sudo apt-get install python3-numpy
    sudo pip3 install spidev
    sudo pip3 install smbus
-   sudo pip3 install pygame
    ```   
 
     _[Source](https://www.waveshare.com/wiki/2.23inch_OLED_HAT)_
