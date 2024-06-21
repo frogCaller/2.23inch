@@ -20,24 +20,17 @@
 1. **OS install:**
    - Raspberry Pi 5 / 4 / 3 / Zero 2 WH - RaspberryPi OS 64-bit <br />
 
-2. **Install fortune & pygame:**
+2. Enable SPI & I2C:
+   - Open a terminal on your Raspberry Pi.
+   - Run sudo raspi-config.
+   - Navigate to Interfacing Options -> SPI -> Enable.
+   - Navigate to Interfacing Options -> I2C -> Enable.
+
+3. **Install fortune & pygame:**
    ```
    sudo apt install fortune -y
    sudo pip3 install pygame
    ```
-
-3. Install drivers for 2.23inch OLED HAT <br />
-
-   _Make sure to enable SPI & I2C_
-   
-   ```
-   sudo apt install python3-rpi-lgpio
-   sudo apt-get install python3-pip
-   sudo apt-get install python3-pil
-   sudo apt-get install python3-numpy
-   sudo pip3 install spidev
-   sudo pip3 install smbus
-   ```   
 
     _[Source](https://www.waveshare.com/wiki/2.23inch_OLED_HAT)_
    <br />
