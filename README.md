@@ -29,7 +29,6 @@
 3. **Install fortune & pygame:**
    ```
    sudo apt install fortune -y
-   sudo pip3 install pygame
    ```
    <br />
 
@@ -51,10 +50,17 @@
      python3 type.py
      python3 draw.py
      ```
-2. SSH Access:
+2. Displaying Messages:
+   - Utilize the fortune command to display random quotes or messages on the screen.
+     
+     ```
+     sudo apt install fortune -y
+     python3 fortune.py
+     ```
+3. SSH Access:
    - You can also access your Raspberry Pi remotely using SSH. Use the following command to connect:
    - ssh pi@<your_pi_ip_address>
-3. VNC Viewer:
+4. VNC Viewer:
    1. Enable VNC on your Raspberry Pi:
       - Open a terminal on your Raspberry Pi.
       - Run sudo raspi-config.
@@ -64,13 +70,6 @@
       - Enter the IP address of your Raspberry Pi and connect.
    3. Once connected, use the VNC Viewer to interact with the Raspberry Pi UI.
 
-2. Displaying Messages:
-   - Utilize the fortune command to display random quotes or messages on the screen.
-     
-     ```
-     sudo apt install fortune -y
-     python3 fortune.py
-     ```
 # Troubleshooting
 1. Common Issues:
    - Ensure SPI & I2C are enabled in the Raspberry Pi configuration.
