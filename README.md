@@ -31,8 +31,6 @@
    sudo apt install fortune -y
    sudo pip3 install pygame
    ```
-
-    _[Source](https://www.waveshare.com/wiki/2.23inch_OLED_HAT)_
    <br />
 
 # Wiring and Setup
@@ -78,3 +76,4 @@
    - Ensure SPI & I2C are enabled in the Raspberry Pi configuration.
    - Check all connections if the screen does not display anything.
    - Verify all required packages are installed correctly.
+   - [More Info](https://www.waveshare.com/wiki/2.23inch_OLED_HAT)
