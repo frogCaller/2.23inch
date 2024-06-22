@@ -45,12 +45,14 @@
      python3 type.py
      python3 draw.py
      ```
-2. Displaying Messages:
+2. Display Messages or Images:
    - Utilize the fortune command to display random quotes or messages on the screen.
-     
+   - Display your saved drawings on the screen.
+   
      ```
      sudo apt install fortune -y
      python3 fortune.py
+     python3 gallery.py
      ```
 3. SSH Access:
    - You can also access your Raspberry Pi remotely using SSH. Use the following command to connect:
