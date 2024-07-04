@@ -31,6 +31,7 @@
    - sudo apt-get install python3-numpy
    - pip install gpiozero
    - pip install spidev
+   - pip install pillow
    - pip install smbus
 
    <br />
