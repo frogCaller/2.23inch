@@ -28,12 +28,8 @@
    - sudo apt-get update
    - sudo apt-get install python3-pip
    - sudo apt-get install python3-pil
+   - sudo apt-get install python3-smbus
    - sudo apt-get install python3-numpy
-   - pip install gpiozero
-   - pip install spidev
-   - pip install pillow
-   - pip install smbus
-
    <br />
 
 # Wiring and Setup
