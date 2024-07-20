@@ -52,8 +52,7 @@ def main(stdscr):
                 buffer(timeframe)
             elif key == curses.KEY_BACKSPACE or key == 127:  # Backspace key
                 if input_string:
-                    input_str
-                    ing = input_string[:-1]  # Remove last character
+                    input_string = input_string[:-1]  # Remove last character
                     linetext(input_string)
                     buffer(timeframe)
             elif len(input_string) >= 22 and len(input_string) % 22 == 0:
