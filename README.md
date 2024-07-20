@@ -38,7 +38,12 @@
 
 2. **Powering the Pi:**
    - If using a Pi Zero 2 W, connect the UPS Hat for continuous power supply. This will allow you to move the project anywhere without worrying about power interruptions.
-  
+
+3. Clone the repository:
+   ```bash
+   sudo apt install git -y
+   git clone https://github.com/frogCaller/2.23inch.git
+   cd 2.23inch
 
 # Usage Instructions
 1. Drawing and Typing:
