@@ -31,9 +31,27 @@ def buffer(sec):
     time.sleep(sec)
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-def linetext(content):
-    draw.rectangle((0, 0, width, 8), outline=0, fill=0)  # Clear the line
-    draw.text((x, top), content, font=font, fill=255)
+def linetext(content, line_number):
+    draw.rectangle((0, line_number * 8, width, (line_number + 1) * 8), outline=0, fill=0)  # Clear the line
+    draw.text((x, line_number * 8), content, font=font, fill=255)
+
+def wrap_text(text, line_length):
+    wrapped_lines = []
+    lines = text.split('\n')
+
+    for line in lines:
+        current_line = ""
+        for char in line:
+            if len(current_line) < line_length:
+                current_line += char
+            else:
+                wrapped_lines.append(current_line)
+                current_line = char
+
+        if current_line:
+            wrapped_lines.append(current_line)
+
+    return wrapped_lines
 
 def main(stdscr):
     curses.curs_set(0)  # Hide cursor
@@ -41,31 +59,34 @@ def main(stdscr):
     stdscr.timeout(0)  # Set timeout to 0 for non-blocking behavior
 
     global input_string
+    current_line = 0
 
     while True:
         key = stdscr.getch()
 
         if key != -1:
             if key == 27:  # ESC key
-                #linetext(' ')  # Clear the line
                 input_string = ""  # Reset input string
+                current_line = 0
                 buffer(timeframe)
             elif key == curses.KEY_BACKSPACE or key == 127:  # Backspace key
                 if input_string:
                     input_string = input_string[:-1]  # Remove last character
-                    linetext(input_string)
+                    wrapped_lines = wrap_text(input_string, 22)
+                    for i, line in enumerate(wrapped_lines):
+                        linetext(line, i)
+                    current_line = len(wrapped_lines) - 1
                     buffer(timeframe)
-            elif len(input_string) >= 22 and len(input_string) % 22 == 0:
-              input_string += '\n'  # Append newline character
-              linetext(input_string)
-              buffer(timeframe)
-              #press the enter key so that i can type on the next line
-              #key = ord('\n')
-
+            elif key == curses.KEY_ENTER or key == 10:  # Enter key
+                input_string += '\n'
+                current_line += 1
             else:
                 key_char = chr(key) if key < 256 else f"Special key {key}"
                 input_string += key_char
-                linetext(input_string)
+                wrapped_lines = wrap_text(input_string, 22)
+                for i, line in enumerate(wrapped_lines):
+                    linetext(line, i)
+                current_line = len(wrapped_lines) - 1
                 buffer(timeframe)
 
         stdscr.refresh()
