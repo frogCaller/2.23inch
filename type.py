@@ -24,6 +24,7 @@ timeframe = 0.01
 font = ImageFont.truetype('04B_08__.TTF', 8)
 
 input_string = ""
+MAX_LINES = 4
 
 def buffer(sec):
     disp.getbuffer(image)
@@ -37,7 +38,7 @@ def linetext(content, line_number):
 
 def wrap_text(text, line_length):
     wrapped_lines = []
-    lines = text.split('\n')
+    lines = text.split('\n')  # Split text into lines based on newline characters
 
     for line in lines:
         current_line = ""
@@ -73,7 +74,8 @@ def main(stdscr):
                 if input_string:
                     input_string = input_string[:-1]  # Remove last character
                     wrapped_lines = wrap_text(input_string, 22)
-                    for i, line in enumerate(wrapped_lines):
+                    start_line = max(0, len(wrapped_lines) - MAX_LINES)
+                    for i, line in enumerate(wrapped_lines[start_line:]):
                         linetext(line, i)
                     current_line = len(wrapped_lines) - 1
                     buffer(timeframe)
@@ -84,7 +86,8 @@ def main(stdscr):
                 key_char = chr(key) if key < 256 else f"Special key {key}"
                 input_string += key_char
                 wrapped_lines = wrap_text(input_string, 22)
-                for i, line in enumerate(wrapped_lines):
+                start_line = max(0, len(wrapped_lines) - MAX_LINES)
+                for i, line in enumerate(wrapped_lines[start_line:]):
                     linetext(line, i)
                 current_line = len(wrapped_lines) - 1
                 buffer(timeframe)
