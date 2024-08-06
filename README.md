@@ -30,6 +30,7 @@
    - sudo apt-get install python3-pil
    - sudo apt-get install python3-smbus
    - sudo apt-get install python3-numpy
+   - sudo apt-get install python3-spidev
    <br />
 
 # Wiring and Setup
