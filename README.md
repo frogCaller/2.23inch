@@ -21,7 +21,7 @@
    - Raspberry Pi 5 / 4 / 3 / Zero 2 WH - RaspberryPi OS 64-bit <br />
 2. **Enable SPI & I2C:**
    - Open a terminal on your Raspberry Pi.
-   - Run sudo raspi-config.
+   - Run `sudo raspi-config`
    - Navigate to Interfacing Options -> SPI -> Enable.
    - Navigate to Interfacing Options -> I2C -> Enable.
 3. **Python libraries:**
