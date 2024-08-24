@@ -1,15 +1,12 @@
+import os
 import time
-import logging
 from PIL import Image, ImageDraw, ImageFont
 import curses
-
-# Import the SSD1305 library
 from drive import SSD1305
 
 # Initialize display
 disp = SSD1305.SSD1305()
 disp.Init()
-logging.info("clear display")
 disp.clear()
 width = disp.width
 height = disp.height
@@ -62,39 +59,46 @@ def main(stdscr):
     global input_string
     current_line = 0
 
-    while True:
-        key = stdscr.getch()
+    # Open the file in append mode
+    with open("type.txt", "a") as f:
+        while True:
+            key = stdscr.getch()
 
-        if key != -1:
-            if key == 27:  # ESC key
-                input_string = ""  # Reset input string
-                current_line = 0
-                buffer(timeframe)
-            elif key == curses.KEY_BACKSPACE or key == 127:  # Backspace key
-                if input_string:
-                    input_string = input_string[:-1]  # Remove last character
+            if key != -1:
+                if key == 27:  # ESC key
+                    input_string = ""  # Reset input string
+                    current_line = 0
+                    buffer(timeframe)
+                elif key == curses.KEY_BACKSPACE or key == 127:  # Backspace key
+                    if input_string:
+                        input_string = input_string[:-1]  # Remove last character
+                        wrapped_lines = wrap_text(input_string, 22)
+                        start_line = max(0, len(wrapped_lines) - MAX_LINES)
+                        for i, line in enumerate(wrapped_lines[start_line:]):
+                            linetext(line, i)
+                        current_line = len(wrapped_lines) - 1
+                        buffer(timeframe)
+                        f.seek(0)
+                        f.truncate()  # Clear the file content before writing new content
+                        f.write(input_string)
+                elif key == curses.KEY_ENTER or key == 10:  # Enter key
+                    input_string += '\n'
+                    current_line += 1
+                    f.write('\n')  # Write the newline character to the file
+                else:
+                    key_char = chr(key) if key < 256 else f"Special key {key}"
+                    input_string += key_char
                     wrapped_lines = wrap_text(input_string, 22)
                     start_line = max(0, len(wrapped_lines) - MAX_LINES)
                     for i, line in enumerate(wrapped_lines[start_line:]):
                         linetext(line, i)
                     current_line = len(wrapped_lines) - 1
                     buffer(timeframe)
-            elif key == curses.KEY_ENTER or key == 10:  # Enter key
-                input_string += '\n'
-                current_line += 1
-            else:
-                key_char = chr(key) if key < 256 else f"Special key {key}"
-                input_string += key_char
-                wrapped_lines = wrap_text(input_string, 22)
-                start_line = max(0, len(wrapped_lines) - MAX_LINES)
-                for i, line in enumerate(wrapped_lines[start_line:]):
-                    linetext(line, i)
-                current_line = len(wrapped_lines) - 1
-                buffer(timeframe)
+                    f.write(key_char)  # Write the character to the file
 
-        stdscr.refresh()
+            stdscr.refresh()
 
-        if input_string and input_string[0] == curses.KEY_F1:  # Exit condition
-            break
+            if input_string and input_string[0] == curses.KEY_F1:  # Exit condition
+                break
 
 curses.wrapper(main)
