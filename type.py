@@ -19,9 +19,15 @@ bottom = height - padding
 x = 0
 timeframe = 0.01
 font = ImageFont.truetype('04B_08__.TTF', 8)
+line_height = font.getsize("A")[1]  # Dynamically get the height of the font
+
+# Calculate how many characters can fit in a single line
+char_width = font.getsize("A")[0]  # Get the width of a single character
+max_chars_per_line = width // char_width  # Calculate the number of characters that fit on the display width
+
+MAX_LINES = height // line_height  # Calculate how many lines can fit on the display
 
 input_string = ""
-MAX_LINES = 4
 
 def buffer(sec):
     disp.getbuffer(image)
@@ -30,17 +36,17 @@ def buffer(sec):
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
 def linetext(content, line_number):
-    draw.rectangle((0, line_number * 8, width, (line_number + 1) * 8), outline=0, fill=0)  # Clear the line
-    draw.text((x, line_number * 8), content, font=font, fill=255)
+    draw.rectangle((0, line_number * line_height, width, (line_number + 1) * line_height), outline=0, fill=0)
+    draw.text((x, line_number * line_height), content, font=font, fill=255)
 
-def wrap_text(text, line_length):
+def wrap_text(text, max_line_length):
     wrapped_lines = []
     lines = text.split('\n')  # Split text into lines based on newline characters
 
     for line in lines:
         current_line = ""
         for char in line:
-            if len(current_line) < line_length:
+            if len(current_line) < max_line_length:
                 current_line += char
             else:
                 wrapped_lines.append(current_line)
@@ -72,7 +78,7 @@ def main(stdscr):
                 elif key == curses.KEY_BACKSPACE or key == 127:  # Backspace key
                     if input_string:
                         input_string = input_string[:-1]  # Remove last character
-                        wrapped_lines = wrap_text(input_string, 22)
+                        wrapped_lines = wrap_text(input_string, max_chars_per_line)
                         start_line = max(0, len(wrapped_lines) - MAX_LINES)
                         for i, line in enumerate(wrapped_lines[start_line:]):
                             linetext(line, i)
@@ -88,7 +94,7 @@ def main(stdscr):
                 else:
                     key_char = chr(key) if key < 256 else f"Special key {key}"
                     input_string += key_char
-                    wrapped_lines = wrap_text(input_string, 22)
+                    wrapped_lines = wrap_text(input_string, max_chars_per_line)
                     start_line = max(0, len(wrapped_lines) - MAX_LINES)
                     for i, line in enumerate(wrapped_lines[start_line:]):
                         linetext(line, i)
