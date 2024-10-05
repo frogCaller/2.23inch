@@ -19,13 +19,12 @@ bottom = height - padding
 x = 0
 timeframe = 0.01
 font = ImageFont.truetype('04B_08__.TTF', 8)
-line_height = font.getsize("A")[1]  # Dynamically get the height of the font
+line_height = font.getsize("A")[1]
 
-# Calculate how many characters can fit in a single line
-char_width = font.getsize("A")[0]  # Get the width of a single character
-max_chars_per_line = width // char_width  # Calculate the number of characters that fit on the display width
+char_width = font.getsize("A")[0]
+max_chars_per_line = width // char_width 
 
-MAX_LINES = height // line_height  # Calculate how many lines can fit on the display
+MAX_LINES = height // line_height
 
 input_string = ""
 
@@ -41,7 +40,7 @@ def linetext(content, line_number):
 
 def wrap_text(text, max_line_length):
     wrapped_lines = []
-    lines = text.split('\n')  # Split text into lines based on newline characters
+    lines = text.split('\n')
 
     for line in lines:
         current_line = ""
@@ -58,14 +57,13 @@ def wrap_text(text, max_line_length):
     return wrapped_lines
 
 def main(stdscr):
-    curses.curs_set(0)  # Hide cursor
-    stdscr.nodelay(1)  # Non-blocking input
-    stdscr.timeout(0)  # Set timeout to 0 for non-blocking behavior
+    curses.curs_set(0) 
+    stdscr.nodelay(1)
+    stdscr.timeout(0) 
 
     global input_string
     current_line = 0
 
-    # Open the file in append mode
     with open("type.txt", "a") as f:
         while True:
             key = stdscr.getch()
@@ -100,11 +98,11 @@ def main(stdscr):
                         linetext(line, i)
                     current_line = len(wrapped_lines) - 1
                     buffer(timeframe)
-                    f.write(key_char)  # Write the character to the file
+                    f.write(key_char) 
 
             stdscr.refresh()
 
-            if input_string and input_string[0] == curses.KEY_F1:  # Exit condition
+            if input_string and input_string[0] == curses.KEY_F1:
                 break
 
 curses.wrapper(main)
