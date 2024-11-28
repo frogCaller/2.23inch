@@ -9,8 +9,6 @@
 * [Raspberry Pi 5](https://amzn.to/45zrAKI) / [4](https://amzn.to/3KQlkVv) / [3](https://amzn.to/3xs2iSm) / [Zero 2 WH](https://amzn.to/3VO7eu2)<br />
 * [Micro SD Cards](https://amzn.to/4erXgWD)<br />
 * [2.23inch OLED HAT](https://amzn.to/3V2gCKb)<br />
-* [UPS Hat](https://amzn.to/4ceZp6I) (for Pi Zero 2 W)<br />
-* [90-degree GPIO extenders](https://amzn.to/3Uooea9)<br />
 <br />
 (Amazon affiliate links)<br />
 
@@ -33,13 +31,9 @@
    cd 2.23inch
 
 # Wiring and Setup
-1. **Connecting the OLED HAT to Raspberry Pi:**
-   - Use the 90-degree GPIO extenders to connect the OLED HAT to the Raspberry Pi. This provides a better viewing angle for the display. <br />
+1. **Connect OLED HAT to Raspberry Pi:**
 
-2. **Powering the Pi:**
-   - If using a Pi Zero 2 W, connect the UPS Hat for continuous power supply. This will allow you to move the project anywhere without worrying about power interruptions.
-
-3. **Install System and Python Dependencies:**
+2. **Install System and Python Dependencies:**
    ```bash
    chmod +x setup.sh
    ./setup.sh
