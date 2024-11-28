@@ -19,19 +19,18 @@
 
 1. **OS install:**
    - Raspberry Pi 5 / 4 / 3 / Zero 2 WH - RaspberryPi OS 64-bit <br />
+   
 2. **Enable SPI & I2C:**
    - Open a terminal on your Raspberry Pi.
    - Run `sudo raspi-config`
    - Navigate to Interfacing Options -> SPI -> Enable.
    - Navigate to Interfacing Options -> I2C -> Enable.
-3. **Python libraries:**
-   - sudo apt-get update
-   - sudo apt-get install python3-pip
-   - sudo apt-get install python3-pil
-   - sudo apt-get install python3-smbus
-   - sudo apt-get install python3-numpy
-   - sudo apt-get install python3-spidev
-   <br />
+     
+3. **Clone the repository:**
+   ```bash
+   sudo apt install -y git
+   git clone https://github.com/frogCaller/2.23inch.git
+   cd 2.23inch
 
 # Wiring and Setup
 1. **Connecting the OLED HAT to Raspberry Pi:**
@@ -40,11 +39,10 @@
 2. **Powering the Pi:**
    - If using a Pi Zero 2 W, connect the UPS Hat for continuous power supply. This will allow you to move the project anywhere without worrying about power interruptions.
 
-3. Clone the repository:
+3. **Install System and Python Dependencies:**
    ```bash
-   sudo apt install git -y
-   git clone https://github.com/frogCaller/2.23inch.git
-   cd 2.23inch
+   chmod +x setup.sh
+   ./setup.sh
 
 # Usage Instructions
 1. Drawing and Typing:
@@ -58,11 +56,12 @@
      ```
 2. Display Messages or Images:
    - Utilize the fortune command to display random quotes or messages on the screen.
+     ```
+     python3 fortune.py
+     ```
    - Display your saved drawings on the screen.
    
      ```
-     sudo apt install fortune -y
-     python3 fortune.py
      python3 gallery.py
      ```
 3. SSH Access:
